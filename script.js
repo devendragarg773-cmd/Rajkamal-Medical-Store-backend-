@@ -1,5 +1,5 @@
 // Rajkamal Medical Store - online version
-const API_URL = "https://YOUR-RENDER-SERVICE.onrender.com";
+const API_URL = "https://rajkamal-medical-store-backend-1.onrender.com";
 const CATEGORIES=["Skin Care","Tablets","Protein","General Items","Shampoo & Soap","All Items"];
 
 let products=[];
