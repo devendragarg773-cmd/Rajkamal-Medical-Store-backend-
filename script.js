@@ -106,11 +106,24 @@ $("setLocationBtn").onclick=async()=>{
 };
 
 $("saveLocationBtn").onclick=async()=>{
-  const v=$("storeLocationInput").value.trim(); if(!v)return;
-  try{await api("/api/location",{method:"PUT",body:JSON.stringify({location:v})});closeAll();}
-  catch(e){alert(e.message)}
-};
+  const v=$("storeLocationInput").value.trim();
+  if(!v)return;
 
+  try{
+    await api("/api/location",{
+      method:"PUT",
+      headers:{
+        "Content-Type":"application/json",
+        "Authorization":"Bearer "+localStorage.getItem("rajkamal_owner_token")
+      },
+      body:JSON.stringify({location:v})
+    });
+
+    closeAll();
+  }catch(e){
+    alert(e.message);
+  }
+};
 function renderOwnerProducts(){
   $("ownerProducts").innerHTML=products.map(p=>`<div class="owner-row"><div><b>${p.name}</b><br>₹${p.price} • Qty ${p.qty} • ${p.out?"OUT OF STOCK":"In Stock"}</div>
   <button class="edit" onclick="editProduct(${p.id})">Edit</button>
